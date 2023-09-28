@@ -2,9 +2,20 @@
 
 # AirBnB clone v3
 
-AirBnB clone v2 is an enhanced version of the [original project](https://github.com/yousafesaeed/AirBnB_clone_v2), incorporating additional features and improvements. Just like its predecessor, it utilizes a command-line interface and object-oriented programming to efficiently manage data. However, in this iteration, the storage system has been upgraded to MySQL, providing a more robust and scalable solution for data storage.
+AirBnB clone v3 is an enhanced version of the [previous iteration](https://github.com/yousafesaeed/AirBnB_clone_v2), introducing new functionalities and improvements. Like its predecessor, it retains the command-line interface and utilizes object-oriented programming to efficiently manage data. However, in this version, the project expands its capabilities with the addition of a powerful RESTful API.
 
-Furthermore, the project has been deployed using Fabric, allowing for seamless deployment of the web static. The introduction of a web framework, namely Flask, along with the use of Jinja templating, enables the creation of dynamic web pages, enhancing the overall user experience. With these new features and improvements, the AirBnB clone v2 offers a more comprehensive and user-friendly platform for managing accommodations.
+A new route, /api/v1/, has been implemented to house the first version of the RESTful API. This API provides external devices with the ability to access and modify data stored in both the MySQL database and the File.JSON. It supports various HTTP methods to facilitate different operations:
+
+- HTTP GET: Retrieve information
+- HTTP POST: Create new information
+- HTTP PUT: Update existing information
+- HTTP DELETE: Delete information
+
+By incorporating this API, AirBnB clone v3 enables seamless communication between the front-end and the application. Users can now interact with the Airbnb_clone platform and access information about available rental houses and user profiles.
+
+To ensure compatibility and unrestricted access, CORS (Cross-Origin Resource Sharing) has been configured to allow any software on the device to interact with the API resources. This eliminates any potential blocking issues that could hinder communication between different components.
+
+With these new additions, AirBnB clone v3 provides an even more comprehensive and user-friendly platform for managing accommodations. The RESTful API empowers external devices to efficiently retrieve and modify data, enhancing the overall functionality and effectiveness of the application.
 
 ## Table of Contents
 
