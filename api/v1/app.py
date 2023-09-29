@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Flask web server to handle API petition-requests."""
+"""Flask web server to handle API requests."""
 
 from api.v1.views import app_views
 from flask import Blueprint, Flask, jsonify
