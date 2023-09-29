@@ -1,5 +1,10 @@
 #!/usr/bin/python3
-"""Handles routes for the Flask web server."""
+"""Routes Handling for the App.
+
+This module contains route handlers for the Flask app.
+It defines the various routes and their corresponding functions to handle incoming HTTP requests.
+Each route is responsible for a specific endpoint or functionality of the app.
+"""
 
 from api.v1.views import app_views
 from flask import Response, jsonify
