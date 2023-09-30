@@ -2,7 +2,8 @@
 """Routes Handling for the App.
 
 This module contains route handlers for the Flask app.
-It defines the various routes and their corresponding functions to handle incoming HTTP requests.
+It defines the various routes and their corresponding functions
+to handle incoming HTTP requests.
 Each route is responsible for a specific endpoint or functionality of the app.
 """
 

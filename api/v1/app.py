@@ -2,8 +2,10 @@
 """Flask web server to handle API requests.
 
 This module sets up a Flask web server that handles API requests.
-It registers the necessary routes and configurations to respond to HTTP requests.
-The server listens on the specified host and port, which can be customized through environment variables.
+It registers the necessary routes and configurations
+to respond to HTTP requests.
+The server listens on the specified host and port,
+which can be customized through environment variables.
 """
 
 from api.v1.views import app_views

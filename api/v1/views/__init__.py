@@ -3,7 +3,8 @@
 
 This module initializes the Flask blueprint for version 1 of the API.
 It sets the URL prefix for all routes under this version to '/api/v1'.
-The blueprint is used to organize and register the various view modules that handle specific endpoints of the API.
+The blueprint is used to organize and register the various view modules
+that handle specific endpoints of the API.
 """
 
 from flask import Blueprint
