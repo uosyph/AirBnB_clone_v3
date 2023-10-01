@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-""""""
+"""API Routes for States.
+
+This module defines the API routes for handling states in the Flask app.
+It includes route handlers for retrieving all states,
+retrieving a specific state by ID, creating a new state,
+updating an existing state, and deleting a state.
+"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, request
@@ -9,7 +15,11 @@ from models.engine.db_storage import classes
 
 @app_views.route("/states", strict_slashes=False, methods=["GET"])
 def get_states():
-    """"""
+    """Retrieve all states.
+
+    Returns:
+        A JSON response containing a list of all states.
+    """
     states = storage.all("State")
     states_list = []
     for state in states.values():
@@ -19,7 +29,17 @@ def get_states():
 
 @app_views.route("/states/<state_id>", strict_slashes=False, methods=["GET"])
 def get_state(state_id):
-    """"""
+    """Retrieve a specific state by ID.
+
+    Args:
+        state_id: The ID of the state to retrieve.
+
+    Returns:
+        A JSON response containing the details of the specified state.
+
+    Raises:
+        404: If the state with the specified ID does not exist.
+    """
     state = storage.get(classes["State"], state_id)
     if state is None:
         abort(404)
@@ -29,7 +49,17 @@ def get_state(state_id):
 @app_views.route("/states/<state_id>",
                  strict_slashes=False, methods=["DELETE"])
 def delete_state(state_id):
-    """"""
+    """Delete a state.
+
+    Args:
+        state_id: The ID of the state to delete.
+
+    Returns:
+        An empty JSON response.
+
+    Raises:
+        404: If the state with the specified ID does not exist.
+    """
     state = storage.get(classes["State"], state_id)
     if state is None:
         abort(404)
@@ -41,7 +71,15 @@ def delete_state(state_id):
 
 @app_views.route("/states/", strict_slashes=False, methods=["POST"])
 def post_state():
-    """"""
+    """Create a new state.
+
+    Returns:
+        A JSON response containing the details of the newly created state.
+
+    Raises:
+        400: If the request data is not a valid JSON
+             or if the 'name' field is missing.
+    """
     state_data = request.get_json(force=True, silent=True)
     if type(state_data) is not dict:
         abort(400, "Not a JSON")
@@ -57,7 +95,18 @@ def post_state():
 
 @app_views.route("/states/<state_id>", strict_slashes=False, methods=["PUT"])
 def put_state(state_id):
-    """"""
+    """Update an existing state.
+
+    Args:
+        state_id: The ID of the state to update.
+
+    Returns:
+        A JSON response containing the updated details of the state.
+
+    Raises:
+        404: If the state with the specified ID does not exist.
+        400: If the request data is not a valid JSON.
+    """
     state = storage.get(classes["State"], state_id)
     if state is None:
         abort(404)

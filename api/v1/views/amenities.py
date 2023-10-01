@@ -15,8 +15,7 @@ from models.engine.db_storage import classes
 
 @app_views.route("/amenities", strict_slashes=False, methods=["GET"])
 def get_amenities():
-    """
-    Retrieve all amenities.
+    """Retrieve all amenities.
 
     Returns:
         A JSON response containing a list of all amenities.
@@ -32,8 +31,7 @@ def get_amenities():
                  strict_slashes=False,
                  methods=["GET"])
 def get_amenity(amenity_id):
-    """
-    Retrieve a specific amenity by ID.
+    """Retrieve a specific amenity by ID.
 
     Args:
         amenity_id: The ID of the amenity to retrieve.
@@ -54,8 +52,7 @@ def get_amenity(amenity_id):
                  strict_slashes=False,
                  methods=["DELETE"])
 def delete_amenity(amenity_id):
-    """
-    Delete an amenity.
+    """Delete an amenity.
 
     Args:
         amenity_id: The ID of the amenity to delete.
@@ -77,8 +74,7 @@ def delete_amenity(amenity_id):
 
 @app_views.route("/amenities", strict_slashes=False, methods=["POST"])
 def post_amenity():
-    """
-    Create a new amenity.
+    """Create a new amenity.
 
     Returns:
         A JSON response containing the details of the newly created amenity.
@@ -104,8 +100,7 @@ def post_amenity():
                  strict_slashes=False,
                  methods=["PUT"])
 def put_amenity(amenity_id):
-    """
-    Update an existing amenity.
+    """Update an existing amenity.
 
     Args:
         amenity_id: The ID of the amenity to update.

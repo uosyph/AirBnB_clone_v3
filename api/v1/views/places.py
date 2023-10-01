@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-""""""
+"""API Routes for Places.
+
+This module defines the API routes for handling places in the Flask app.
+It includes route handlers for retrieving all places in a city,
+retrieving a specific place by ID, creating a new place,
+updating an existing place, and deleting a place.
+"""
 
 from api.v1.views import app_views
 from flask import abort, jsonify, request
@@ -10,7 +16,17 @@ from models.engine.db_storage import classes
 @app_views.route("/cities/<city_id>/places",
                  strict_slashes=False, methods=["GET"])
 def get_places(city_id):
-    """"""
+    """Retrieve all places in a city.
+
+    Args:
+        city_id: The ID of the city.
+
+    Returns:
+        A JSON response containing a list of all places in the city.
+
+    Raises:
+        404: If the city with the specified ID does not exist.
+    """
     city = storage.get(classes["City"], city_id)
     if city is None:
         abort(404)
@@ -23,7 +39,17 @@ def get_places(city_id):
 
 @app_views.route("/places/<place_id>", strict_slashes=False, methods=["GET"])
 def get_place(place_id):
-    """"""
+    """Retrieve a specific place by ID.
+
+    Args:
+        place_id: The ID of the place.
+
+    Returns:
+        A JSON response containing the details of the place.
+
+    Raises:
+        404: If the place with the specified ID does not exist.
+    """
     place = storage.get(classes["Place"], place_id)
     if place is None:
         abort(404)
@@ -33,7 +59,17 @@ def get_place(place_id):
 @app_views.route("/places/<place_id>",
                  strict_slashes=False, methods=["DELETE"])
 def delete_place(place_id):
-    """"""
+    """Delete a place by ID.
+
+    Args:
+        place_id: The ID of the place.
+
+    Returns:
+        An empty JSON response.
+
+    Raises:
+        404: If the place with the specified ID does not exist.
+    """
     place = storage.get(classes["Place"], place_id)
     if place is None:
         abort(404)
@@ -45,7 +81,18 @@ def delete_place(place_id):
 @app_views.route("/cities/<city_id>/places",
                  strict_slashes=False, methods=["POST"])
 def post_place(city_id):
-    """"""
+    """Create a new place in a city.
+
+    Args:
+        city_id: The ID of the city.
+
+    Returns:
+        A JSON response containing the details of the newly created place.
+
+    Raises:
+        400: If the request data is not in JSON format or is missing required fields.
+        404: If the city with the specified ID does not exist.
+    """
     city = storage.get(classes["City"], city_id)
     if city is None:
         abort(404)
@@ -72,7 +119,14 @@ def post_place(city_id):
 
 @app_views.route("/places_search", strict_slashes=False, methods=["POST"])
 def post_place_search():
-    """"""
+    """Search for places based on certain criteria.
+
+    Returns:
+        A JSON response containing the list of places that match the search criteria.
+
+    Raises:
+        400: If the request data is not in JSON format.
+    """
     place_data = request.get_json(force=True, silent=True)
     if type(place_data) is not dict:
         abort(400, "Not a JSON")
@@ -83,7 +137,17 @@ def post_place_search():
 
 @app_views.route("/places/<place_id>", strict_slashes=False, methods=["PUT"])
 def put_place(place_id):
-    """"""
+    """Update an existing place by ID.
+
+    Args:
+        place_id: The ID of the place.
+
+    Returns:
+        A JSON response containing the updated details of the place.
+
+    Raises:
+        404: If the place with the specified ID does not exist.
+    """
     place = storage.get(classes["Place"], place_id)
     if place is None:
         abort(404)

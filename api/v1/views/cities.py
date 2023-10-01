@@ -16,14 +16,14 @@ from models.engine.db_storage import classes
 @app_views.route("states/<state_id>/cities",
                  strict_slashes=False, methods=["GET"])
 def get_cities(state_id):
-    """
-    Retrieve all cities for a specific state.
+    """Retrieve all cities for a specific state.
 
     Args:
         state_id: The ID of the state.
 
     Returns:
-        A JSON response containing a list of all cities for the specified state.
+        A JSON response containing a list
+        of all cities for the specified state.
 
     Raises:
         404: If the state with the specified ID does not exist.
@@ -40,8 +40,7 @@ def get_cities(state_id):
 
 @app_views.route("/cities/<city_id>", strict_slashes=False, methods=["GET"])
 def get_city(city_id):
-    """
-    Retrieve a specific city by ID.
+    """Retrieve a specific city by ID.
 
     Args:
         city_id: The ID of the city to retrieve.
@@ -61,8 +60,7 @@ def get_city(city_id):
 @app_views.route("/cities/<city_id>",
                  strict_slashes=False, methods=["DELETE"])
 def del_city(city_id):
-    """
-    Delete a city.
+    """Delete a city.
 
     Args:
         city_id: The ID of the city to delete.
@@ -85,8 +83,7 @@ def del_city(city_id):
 @app_views.route("/states/<state_id>/cities",
                  strict_slashes=False, methods=["POST"])
 def post_city(state_id):
-    """
-    Create a new city for a specific state.
+    """Create a new city for a specific state.
 
     Args:
         state_id: The ID of the state to which the city belongs.
@@ -118,8 +115,7 @@ def post_city(state_id):
 
 @app_views.route("/cities/<city_id>", strict_slashes=False, methods=["PUT"])
 def put_city(city_id):
-    """
-    Update an existing city.
+    """Update an existing city.
 
     Args:
         city_id: The ID of the city to update.
