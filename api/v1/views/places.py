@@ -5,6 +5,14 @@ This module defines the API routes for handling places in the Flask app.
 It includes route handlers for retrieving all places in a city,
 retrieving a specific place by ID, creating a new place,
 updating an existing place, and deleting a place.
+
+Routes:
+- GET /cities/<city_id>/places: Retrieve all places in a city.
+- GET /places/<place_id>: Retrieve a specific place by ID.
+- DELETE /places/<place_id>: Delete a place.
+- POST /cities/<city_id>/places: Create a new place in a city.
+- POST /places_search: Search for places based on certain criteria.
+- PUT /places/<place_id>: Update an existing place.
 """
 
 from api.v1.views import app_views
@@ -59,7 +67,7 @@ def get_place(place_id):
 @app_views.route("/places/<place_id>",
                  strict_slashes=False, methods=["DELETE"])
 def delete_place(place_id):
-    """Delete a place by ID.
+    """Delete a place.
 
     Args:
         place_id: The ID of the place.
@@ -137,7 +145,7 @@ def post_place_search():
 
 @app_views.route("/places/<place_id>", strict_slashes=False, methods=["PUT"])
 def put_place(place_id):
-    """Update an existing place by ID.
+    """Update an existing place.
 
     Args:
         place_id: The ID of the place.

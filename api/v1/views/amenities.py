@@ -5,6 +5,13 @@ This module defines the API routes for handling amenities in the Flask app.
 It includes route handlers for retrieving all amenities,
 retrieving a specific amenity by ID, creating a new amenity,
 updating an existing amenity, and deleting an amenity.
+
+Routes:
+- GET /amenities: Retrieve all amenities.
+- GET /amenities/<amenity_id>: Retrieve a specific amenity by ID.
+- DELETE /amenities/<amenity_id>: Delete an amenity.
+- POST /amenities: Create a new amenity.
+- PUT /amenities/<amenity_id>: Update an existing amenity.
 """
 
 from api.v1.views import app_views
