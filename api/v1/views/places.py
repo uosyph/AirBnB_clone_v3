@@ -98,7 +98,8 @@ def post_place(city_id):
         A JSON response containing the details of the newly created place.
 
     Raises:
-        400: If the request data is not in JSON format or is missing required fields.
+        400: If the request data is not in JSON format
+        or is missing required fields.
         404: If the city with the specified ID does not exist.
     """
     city = storage.get(classes["City"], city_id)
@@ -130,7 +131,8 @@ def post_place_search():
     """Search for places based on certain criteria.
 
     Returns:
-        A JSON response containing the list of places that match the search criteria.
+        A JSON response containing the list of
+        places that match the search criteria.
 
     Raises:
         400: If the request data is not in JSON format.
