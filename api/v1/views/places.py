@@ -11,7 +11,8 @@ Routes:
 - GET /places/<place_id>: Retrieve a specific place by ID.
 - DELETE /places/<place_id>: Delete a place.
 - POST /cities/<city_id>/places: Create a new place in a city.
-- POST /places_search: Search for places based on certain criteria.
+- POST /places_search: Search for places based on
+                       states, cities, and amenities.
 - PUT /places/<place_id>: Update an existing place.
 """
 
@@ -99,7 +100,7 @@ def post_place(city_id):
 
     Raises:
         400: If the request data is not in JSON format
-        or is missing required fields.
+             or is missing required fields.
         404: If the city with the specified ID does not exist.
     """
     city = storage.get(classes["City"], city_id)
@@ -128,7 +129,7 @@ def post_place(city_id):
 
 @app_views.route("/places_search", strict_slashes=False, methods=["POST"])
 def post_place_search():
-    """Search for places based on certain criteria.
+    """Search for places based on states, cities, and amenities.
 
     Returns:
         A JSON response containing the list of
@@ -137,12 +138,42 @@ def post_place_search():
     Raises:
         400: If the request data is not in JSON format.
     """
-    place_data = request.get_json(force=True, silent=True)
-    if type(place_data) is not dict:
-        abort(400, "Not a JSON")
+    if request.get_json() is None:
+        return jsonify({"error": "Not a JSON"}), 400
 
-    if place_data == {}:
-        return storage.all(classes["Place"])
+    states = request.get_json().get("states", [])
+    cities = request.get_json().get("cities", [])
+    amenities = request.get_json().get("amenities", [])
+
+    amenities_list = [
+        storage.get("Amenity", amenity_id)
+        for amenity_id in amenities
+        if storage.get("Amenity", amenity_id)
+    ]
+
+    if not states and not cities:
+        places = storage.all("Place").values()
+    else:
+        city_ids = set(cities)
+        state_cities = [
+            storage.get("State", state_id).cities
+            for state_id in states
+            if storage.get("State", state_id)
+        ]
+        places = [
+            place
+            for city in state_cities
+            for place in city.places
+            if city.id not in city_ids
+        ]
+
+    places_list = [
+        place.to_dict()
+        for place in places
+        if all(amenity in place.amenities for amenity in amenities_list)
+    ]
+
+    return jsonify(places_list)
 
 
 @app_views.route("/places/<place_id>", strict_slashes=False, methods=["PUT"])
