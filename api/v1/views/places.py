@@ -145,34 +145,33 @@ def post_place_search():
     cities = request.get_json().get("cities", [])
     amenities = request.get_json().get("amenities", [])
 
-    amenities_list = [
-        storage.get("Amenity", amenity_id)
-        for amenity_id in amenities
-        if storage.get("Amenity", amenity_id)
-    ]
+    amenities_list = []
+    for amenity_id in amenities:
+        amenity = storage.get("Amenity", amenity_id)
+        if amenity:
+            amenities_list.append(amenity)
 
-    if not states and not cities:
+    if states == cities == []:
         places = storage.all("Place").values()
     else:
-        city_ids = set(cities)
-        state_cities = [
-            storage.get("State", state_id).cities
-            for state_id in states
-            if storage.get("State", state_id)
-        ]
-        places = [
-            place
-            for city in state_cities
-            for place in city.places
-            if city.id not in city_ids
-        ]
+        places = []
+        for state_id in states:
+            state = storage.get("State", state_id)
+            for city in state.cities:
+                if city.id not in cities:
+                    cities.append(city.id)
+        for city_id in cities:
+            city = storage.get("City", city_id)
+            for place in city.places:
+                places.append(place)
 
-    places_list = [
-        place.to_dict()
-        for place in places
-        if all(amenity in place.amenities for amenity in amenities_list)
-    ]
-
+    places_list = []
+    for place in places:
+        places_list.append(place.to_dict())
+        for amenity in amenities_list:
+            if amenity not in place.amenities:
+                places_list.pop()
+                break
     return jsonify(places_list)
 
 
