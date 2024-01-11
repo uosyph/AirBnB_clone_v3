@@ -2,7 +2,7 @@
 
 # AirBnB clone v3
 
-AirBnB clone v3 is an enhanced version of the [previous iteration](https://github.com/yousafesaeed/AirBnB_clone_v2), introducing new functionalities and improvements. Like its predecessor, it retains the command-line interface and utilizes object-oriented programming to efficiently manage data. However, in this version, the project expands its capabilities with the addition of a powerful RESTful API.
+AirBnB clone v3 is an enhanced version of the [previous iteration](https://github.com/uosyph/AirBnB_clone_v2), introducing new functionalities and improvements. Like its predecessor, it retains the command-line interface and utilizes object-oriented programming to efficiently manage data. However, in this version, the project expands its capabilities with the addition of a powerful RESTful API.
 
 A new route, /api/v1/, has been implemented to house the first version of the RESTful API. This API provides external devices with the ability to access and modify data stored in both the MySQL database and the File.JSON. It supports various HTTP methods to facilitate different operations:
 
@@ -64,7 +64,7 @@ Start using the console
 Clone the repository:
 
 ```bash
-git clone https://github.com/yousafesaeed/AirBnB_clone_v2
+git clone https://github.com/uosyph/AirBnB_clone_v2
 ```
 
 Move in to the directory:
@@ -199,6 +199,6 @@ AirBnB_clone$
 
 ## Author
 
-[Yousef Saeed](https://github.com/yousafesaeed)
+[Yousef Saeed](https://github.com/uosyph)
 
 <p align="right"><a href="#readme-top">Back to Top</a></p>
